@@ -53,28 +53,24 @@ class Container {
                 this.values = Object.values(value);
                 this.entries = Object.entries(value);
                 this.length = value.length;
-                this.functionSet.push(
-                    "forEach", "toString", "assign", "create", "defineProperty", "defineProperties",
-                    "freeze", "fromEntries", "getOwnPropertyDescriptor", "getOwnPropertyDescriptors",
-                    "getOwnPropertyNames", "getOwnPropertySymbols", "getPrototypeOf", "is", "isExtensible",
-                    "isFrozen", "isSealed", "preventExtensions", "seal", "setPrototypeOf"
-                );
+                this.functionSet.push("forEach");
                 break;
             case Map:
                 this.keys = this.raw.keys();
                 this.values = this.raw.values();
                 this.entries = this.raw.entries();
                 this.size = this.raw.size;
-                this.functionSet.push("forEach", "toString", "get", "set", "has", "delete", "clear");
+                this.functionSet.push("forEach");
                 break;
             case Set:
                 this.values = this.raw.values();
                 this.entries = this.raw.entries();
                 this.size = this.raw.size;
-                this.functionSet.push("forEach", "toString", "add", "has", "delete", "clear");
+                this.functionSet.push("forEach");
                 break;
             case String:
                 this.length = this.raw.length;
+                this.functionSet.push("forEach");
                 break;
         }
     }
