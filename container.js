@@ -52,7 +52,12 @@ class Container {
                 this.keys = Object.keys(value);
                 this.values = Object.values(value);
                 this.entries = Object.entries(value);
-                this.length = value.length;
+                this.length = this.raw.length;
+                this.functionSet.push("forEach");
+                break;
+            case Array:
+                this.entries = this.raw;
+                this.length = this.raw.length;
                 this.functionSet.push("forEach");
                 break;
             case Map:
@@ -73,6 +78,11 @@ class Container {
                 this.functionSet.push("forEach");
                 break;
         }
+    }
+
+    forEach = (...args) => {
+        if(!this.functionSet.includes("forEach")) throw new ReferenceError(ContainerErrors.NotSupportedException);
+        this.type == "Array" ? this.raw.forEach(...args) : {}
     }
 }
 
