@@ -1,88 +1,71 @@
-import { ContainerErrors } from "./errors.js";
-import { Types } from "./types.js";
-
-if(window) {
-    window["Types"] = Types;
-}
-else {
-    console.warn("Warning: window parent not found, some features may not work properly.");
+const Types = {
+    map: new Map(),
+    set: new Set(),
+    array: new Array(),
+    string: new String(),
+    number: new Number(),
+    date: new Date(),
+    regex: new RegExp()
 }
 
 class Container {
-    raw = null;
+    #content = null; //Packed content
+    #type = null; //Target Type
+    #isLocked = false;
+    #isSealed = false;
+    #isFrozen = false;
+    #length = 0;
 
-    //Property Attributes
-    keys = null;
-    values = null;
-    entries = null;
-    length = 0;
-    size = 0;
+    constructor(content, type) {
+        if(content.constructor.name == type.constructor.name) {
+            this.#content = content;
+            this.#type = type;
 
-    //Other Attributes
-    functionSet = [];
-    type = null;
-
-    constructor(value, type) {
-        
-        /*  The definitive type of the Container content
-            is "Object" by default.
-        */
-        if(value.constructor.name == type.constructor.name) {
-
-            this.raw = value;
-            this.type = type.constructor.name;
-
-            this.#setAttributes(type);
-        }
-        else {
-            throw new TypeError(ContainerErrors.NotAssignableException);
+            //Analisar pra unificar size e length<<<<
         }
     }
 
-    #setAttributes(type) {
-        this.keys = null;
-        this.values = null;
-        this.entries = null;
-        this.length = 0;
-        this.size = 0;
-        this.functionSet = [];
+    //Fetch data from container
 
-        switch(type.constructor) {
-            case Object:
-                this.keys = Object.keys(value);
-                this.values = Object.values(value);
-                this.entries = Object.entries(value);
-                this.length = this.raw.length;
-                this.functionSet.push("forEach");
-                break;
-            case Array:
-                this.entries = this.raw;
-                this.length = this.raw.length;
-                this.functionSet.push("forEach");
-                break;
-            case Map:
-                this.keys = this.raw.keys();
-                this.values = this.raw.values();
-                this.entries = this.raw.entries();
-                this.size = this.raw.size;
-                this.functionSet.push("forEach");
-                break;
-            case Set:
-                this.values = this.raw.values();
-                this.entries = this.raw.entries();
-                this.size = this.raw.size;
-                this.functionSet.push("forEach");
-                break;
-            case String:
-                this.length = this.raw.length;
-                this.functionSet.push("forEach");
-                break;
-        }
+    type() {
+        return this.#type;
     }
 
-    forEach = (...args) => {
-        if(!this.functionSet.includes("forEach")) throw new ReferenceError(ContainerErrors.NotSupportedException);
-        this.type == "Array" ? this.raw.forEach(...args) : {}
+    content() {
+        if(!this.#isLocked && !this.#isSealed) return this.#content;
+    }
+
+    length() {
+        if(!this.#isSealed) return this.#length;
+    }
+
+    toString() {
+        if(!this.#isLocked && !this.#isSealed) return this.#content.toString();
+    }
+
+    toNumber() {
+        if(!this.#isLocked && !this.#isSealed) return Number(this.#content.toString());
+    }
+
+    toBoolean() {
+        if(!this.#isLocked && !this.#isSealed) return Boolean(Number(this.#content.toString()));
+    }
+
+    toSymbol() {
+        if(!this.#isLocked && !this.#isSealed) return Symbol(this.#content.toString());
+    }
+
+    toBase64() {
+        if(!this.#isLocked && !this.#isSealed) return btoa(this.#content.toString());
+    }
+
+    //Edit data in the container
+
+    set(newContent) {
+        if(newContent.constructor.name == type.constructor.name) {
+            this.#content = content;
+            this.#type = type;
+        }
     }
 }
 
