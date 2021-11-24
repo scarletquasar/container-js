@@ -93,7 +93,23 @@ class Container {
                 });
                 this.#resetAttributes();
                 return this.content();
-                
+            
+            case "Map":
+                let result = new Map();
+                let index = 0;
+                this.#content.forEach(value, key => {
+                    if(index != -1) {
+                        if(this.#content.get(key) != target && index == targetIndex) {
+                            result.set(key, value);
+                        }
+                    }
+                    else {
+                        if(this.#content.get(key) != target) {
+                            result.set(key, value);
+                        }
+                    }
+                    index++;
+                });
         }
 
     }
