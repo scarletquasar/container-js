@@ -25,6 +25,10 @@ class Container {
         }
     }
 
+    #resetAttributes() {
+        //Criar método de setar atributos após alteração
+    }
+
     //Fetch data from container
 
     type() {
@@ -59,13 +63,39 @@ class Container {
         if(!this.#isLocked && !this.#isSealed) return btoa(this.#content.toString());
     }
 
+    //Fetch changed data from container
+
     //Edit data in the container
 
     set(newContent) {
         if(newContent.constructor.name == type.constructor.name) {
             this.#content = content;
             this.#type = type;
+            this.#resetAttributes;
         }
+    }
+
+    remove(target, targetIndex = -1) {
+        switch(type.constructor.name) {
+            case "Array":
+                let result = [];
+                this.#content.forEach(element, index => {
+                    if(index != -1) {
+                        if(element != target && index == targetIndex) {
+                            result.push(element);
+                        }
+                    }
+                    else {
+                        if(element != target) {
+                            result.push(element);
+                        }
+                    }
+                });
+                this.#resetAttributes();
+                return this.content();
+                
+        }
+
     }
 }
 
