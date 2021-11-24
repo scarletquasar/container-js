@@ -16,13 +16,11 @@ class Container {
     #isFrozen = false;
     #length = 0;
 
-    constructor(content, type) {
-        if(content.constructor.name == type.constructor.name) {
-            this.#content = content;
-            this.#type = type;
+    constructor(content) {
+        this.#content = content;
+        this.#type = content.constructor.name;
 
-            //Analisar pra unificar size e length<<<<
-        }
+        //Analisar pra unificar size e length<<<<
     }
 
     #resetAttributes() {
@@ -75,58 +73,41 @@ class Container {
         }
     }
 
-    remove(target, targetIndex = -1) {
-        switch(type.constructor.name) {
+    remove(target) {
+        let result;
+        switch(this.#type) {
             case "Array":
-                let result = [];
-                this.#content.forEach(element, index => {
-                    if(index != -1) {
-                        if(element != target && index == targetIndex) {
-                            result.push(element);
-                        }
-                    }
-                    else {
-                        if(element != target) {
-                            result.push(element);
-                        }
+                result = [];
+                this.#content.forEach((element, index) => {
+                    if(element != target) {
+                        result.push(element);
                     }
                 });
+                this.#content = result;
                 this.#resetAttributes();
                 return this.content();
             
             case "Map":
-                let result = new Map();
-                let index = 0;
-                this.#content.forEach(value, key => {
-                    if(index != -1) {
-                        if(this.#content.get(key) != target && index == targetIndex) {
-                            result.set(key, value);
-                        }
+                result = new Map();
+                this.#content.forEach((value, key) => {
+                    if(this.#content.get(key) != target) {
+                        result.set(key, value);
                     }
-                    else {
-                        if(this.#content.get(key) != target) {
-                            result.set(key, value);
-                        }
-                    }
-                    index++;
                 });
+                this.#content = result;
+                this.#resetAttributes();
+                return this.content();
 
             case "Set":
-                let result = new Set();
-                let index = 0;
-                this.#content.forEach(value => {
-                    if(index != -1) {
-                        if(this.#content.get(key) != target && index == targetIndex) {
-                            result.add(value);
-                        }
+                result = new Set();
+                this.#content.forEach((value) => {
+                    if(this.#content.get(key) != target) {
+                        result.add(value);
                     }
-                    else {
-                        if(this.#content.get(key) != target) {
-                            result.add(value);
-                        }
-                    }
-                    index++;
                 });
+                this.#content = result;
+                this.#resetAttributes();
+                return this.content();
         }
 
     }
