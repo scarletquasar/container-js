@@ -106,13 +106,13 @@ class Container {
                 return this.content();
 
             case "Set":
-                result = new Set();
-                this.#content.forEach((value) => {
-                    if(!compare(this.#content.get(key), target)) {
-                        result.add(value);
+                result = [];
+                Array.from(this.#content).forEach((element) => {
+                    if(!compare(element, target)) {
+                        result.push(element);
                     }
                 });
-                this.#content = result;
+                this.#content = new Set(result);
                 this.#resetAttributes();
                 return this.content();
         }
