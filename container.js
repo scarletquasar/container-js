@@ -110,6 +110,23 @@ class Container {
                     }
                     index++;
                 });
+
+            case "Set":
+                let result = new Set();
+                let index = 0;
+                this.#content.forEach(value => {
+                    if(index != -1) {
+                        if(this.#content.get(key) != target && index == targetIndex) {
+                            result.add(value);
+                        }
+                    }
+                    else {
+                        if(this.#content.get(key) != target) {
+                            result.add(value);
+                        }
+                    }
+                    index++;
+                });
         }
 
     }
