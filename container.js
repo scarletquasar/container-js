@@ -1,3 +1,5 @@
+import { compare } from "./lib/recursiveComparator.js"
+
 const Types = {
     map: new Map(),
     set: new Set(),
@@ -84,7 +86,7 @@ class Container {
             case "Array":
                 result = [];
                 this.#content.forEach((element) => {
-                    if(element != target) {
+                    if(!compare(element, target)) {
                         result.push(element);
                     }
                 });
@@ -95,7 +97,7 @@ class Container {
             case "Map":
                 result = new Map();
                 this.#content.forEach((value, key) => {
-                    if(this.#content.get(key) != target) {
+                    if(!compare(this.#content.get(key), target)) {
                         result.set(key, value);
                     }
                 });
@@ -106,7 +108,7 @@ class Container {
             case "Set":
                 result = new Set();
                 this.#content.forEach((value) => {
-                    if(this.#content.get(key) != target) {
+                    if(!compare(this.#content.get(key), target)) {
                         result.add(value);
                     }
                 });
