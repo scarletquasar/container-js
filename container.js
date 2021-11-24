@@ -9,6 +9,10 @@ const Types = {
 }
 
 class Container {
+    static from(content) {
+        return new Container(content);
+    }
+
     #content = null; //Packed content
     #type = null; //Target Type
     #isLocked = false;
@@ -73,12 +77,13 @@ class Container {
         }
     }
 
+    /* remove() - removes target value if content is iterable. Supports Array, Map and Set. */
     remove(target) {
         let result;
         switch(this.#type) {
             case "Array":
                 result = [];
-                this.#content.forEach((element, index) => {
+                this.#content.forEach((element) => {
                     if(element != target) {
                         result.push(element);
                     }
