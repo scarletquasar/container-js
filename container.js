@@ -39,6 +39,22 @@ class Container {
             case "Set":
                 this.#length = this.#content.size;
                 break;
+
+            case "String":
+                this.#length = this.#content.length;
+                break;
+
+            case "Date":
+                this.#length = this.toString().length;
+                break;
+
+            case "RegExp":
+                this.#length = this.toString().length;
+                break;
+
+            case "Function":
+                this.#length = this.toString().length;
+                break;
         }
     }
 
