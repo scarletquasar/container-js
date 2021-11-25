@@ -19,7 +19,6 @@ class Container {
     #type = null; //Target Type
     #isLocked = false;
     #isSealed = false;
-    #isFrozen = false;
     #length = 0;
 
     constructor(content) {
@@ -71,6 +70,9 @@ class Container {
 
     //Edit data in the container
 
+    /* 
+        set() - change the content of the container, is limited to the initial type
+    */
     set(newContent) {
         if(newContent.constructor.name == type.constructor.name) {
             this.#content = content;
@@ -79,7 +81,41 @@ class Container {
         }
     }
 
-    /* remove() - removes target value if content is iterable. Supports Array, Map and Set. */
+    /*  
+        add() - add a value based in the target type: [value] to iterable or string and
+        [key, value] to dictionary.
+    */
+    add(...args) {
+        switch(this.#type) {
+            case "Array":
+                this.#content.push(args[0]);
+                this.#resetAttributes();
+                break;
+
+            case "Map":
+                this.#content.set(args[0], args[1]);
+                this.#resetAttributes();
+                break;
+
+            case "Set":
+                let tempValue = Array.from(this.#content);
+                tempValue.push(args[0]);
+                this.#content = new Set(tempValue);
+                this.#resetAttributes();
+                break;
+            
+            case "String":
+                this.#content += args[0];
+                this.#resetAttributes();
+                break;
+        }
+        return this.content();
+    }
+
+    /*  
+        remove() - removes target value if content is iterable or dictionary. 
+        Removes target text if is string. Supports Array, Map and Set.
+    */
     remove(target) {
         let result;
         switch(this.#type) {
@@ -92,7 +128,7 @@ class Container {
                 });
                 this.#content = result;
                 this.#resetAttributes();
-                return this.content();
+                break;
             
             case "Map":
                 result = new Map();
@@ -103,7 +139,7 @@ class Container {
                 });
                 this.#content = result;
                 this.#resetAttributes();
-                return this.content();
+                break;
 
             case "Set":
                 result = [];
@@ -114,9 +150,21 @@ class Container {
                 });
                 this.#content = new Set(result);
                 this.#resetAttributes();
-                return this.content();
-        }
+                break;
 
+            case "String":
+                this.#content = this.#content.replaceAll(target, "");
+                this.#resetAttributes();
+                break;
+        }
+        return this.content();
+    }
+
+    removeIndex(index) {
+        if(!typeof(index) == number) return this.content();
+        switch(this.#type) {
+            
+        }
     }
 }
 
