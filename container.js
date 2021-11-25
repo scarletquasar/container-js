@@ -2,9 +2,9 @@ import { compare } from "./lib/recursiveComparator.js"
 
 class Container {
     #errors = {
-        notAssignable = "The value declared is not assignable to the container type.",
-        invalidArguments = "The inserted arguments are invalid for this operation.",
-        accessError = "The container can not be accessed. Check if the properties 'locked' and 'sealed' are tru."
+        notAssignable: "The value declared is not assignable to the container type.",
+        invalidArguments: "The inserted arguments are invalid for this operation.",
+        accessError: "The container can not be accessed. Check if the properties 'locked' and 'sealed' are tru."
     }
 
     static from(content) {
@@ -83,7 +83,7 @@ class Container {
     //Fetch changed data from container in a new container
 
     /* 
-        first() - get the first X items of the container content
+        first() - get the first X items of the container content. Supports Array, Set and Object
     */
     first(quantity) {
         if(!quantity) return Container.from(this.#content[0]);
@@ -141,7 +141,7 @@ class Container {
 
     /*  
         add() - add a value based in the target type: [value] to iterable or string and
-        [key, value] to dictionary.
+        [key, value] to dictionary. Supports Object, Array, Map, Set and String
     */
     add(...args) {
         if(this.#isLocked || this.#isSealed) this.content();
@@ -198,10 +198,13 @@ class Container {
             case "Object":
                 result = {};
                 Object.entries(this.#content).forEach(entry => {
-                    if(!compare(entry, target)) {
+                    if(!compare(entry[1], target)) {
                         result[entry[0]] = entry[1];
                     }
                 });
+                this.#content = result;
+                this.#resetAttributes();
+                break;
             
             case "Map":
                 result = new Map();
@@ -250,6 +253,17 @@ class Container {
                         result.push(element);
                     }
                     index++;
+                });
+                this.#content = result;
+                this.#resetAttributes();
+                break;
+
+            case "Object":
+                result = {};
+                Object.entries(this.#content).forEach(entry => {
+                    if(index != targetIndex) {
+                        result[entry[0]] = entry[1];
+                    }
                 });
                 this.#content = result;
                 this.#resetAttributes();
