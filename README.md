@@ -27,7 +27,7 @@ MapContainer.add("key", "value");
 const objectContainer = Container.from({a: 1, b: 2, c: 3});
 const arrayContainer = Container.from([1, 2, 3]);
 
-objectContainer.remove("a"); //Removes 'a' item from the object
+objectContainer.remove(1); //Removes 'a' item from the object - oriented by value
 arrayContainer.remove(1); //Removes '1' element from the array
 ```
 ```js

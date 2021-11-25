@@ -44,6 +44,10 @@ class Container {
 
     //Fetch data from container
 
+    forEach() {
+        //Pendent implementation
+    }
+
     type() {
         return this.#type;
     }
@@ -191,7 +195,13 @@ class Container {
                 this.#resetAttributes();
                 break;
 
-            //TODO: ADICIONAR CASE OBJECT
+            case "Object":
+                result = {};
+                Object.entries(this.#content).forEach(entry => {
+                    if(!compare(entry, target)) {
+                        result[entry[0]] = entry[1];
+                    }
+                });
             
             case "Map":
                 result = new Map();
