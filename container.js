@@ -1,16 +1,12 @@
 import { compare } from "./lib/recursiveComparator.js"
 
-const Types = {
-    map: new Map(),
-    set: new Set(),
-    array: new Array(),
-    string: new String(),
-    number: new Number(),
-    date: new Date(),
-    regex: new RegExp()
-}
-
 class Container {
+    #errors = {
+        notAssignable = "The value declared is not assignable to the container type.",
+        invalidArguments = "The inserted arguments are invalid for this operation.",
+        accessError = "The container can not be accessed. Check if the properties 'locked' and 'sealed' are tru."
+    }
+
     static from(content) {
         return new Container(content);
     }
@@ -127,11 +123,14 @@ class Container {
         set() - change the content of the container, is limited to the initial type
     */
     set(newContent) {
-        if(this.#isLocked || this.#isSealed) return;
+        if(this.#isLocked || this.#isSealed) ;
         if(newContent.constructor.name == type.constructor.name) {
             this.#content = content;
             this.#type = type;
             this.#resetAttributes;
+        }
+        else {
+            throw new TypeError(this.#errors.notAssignable);
         }
         return this.content();
     }
@@ -229,7 +228,7 @@ class Container {
         index if is a string. Supports Array, Set and String. 
     */
     removeIndex(targetIndex) {
-        if(this.#isLocked || this.#isSealed) return;
+        if(this.#isLocked || this.#isSealed) throw new Error(this.#errors.accessError);
         if(!typeof(targetIndex) == "number") return this.content();
         let index = 0;
         let result;

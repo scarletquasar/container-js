@@ -39,3 +39,5 @@ arrayContainer.removeIndex(0); //Removes '1' element from the array
 ```
 
 </details>
+
+- **Functional example #2**:
