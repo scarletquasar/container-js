@@ -110,7 +110,14 @@ class Container {
                 return Container.from(new Set(result));
 
             case "Object":
-                
+                result = {};
+                let contentObjectArray = Object.entries(this.#content);
+                while(quantity > 0) {
+                    result[contentObjectArray[index][0]] = (contentObjectArray[index][1]);
+                    quantity--;
+                    index++;
+                }
+                return Container.from(result);
         }
     }
 
