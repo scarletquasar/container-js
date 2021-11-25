@@ -80,7 +80,39 @@ class Container {
         if(!this.#isLocked && !this.#isSealed) return btoa(this.#content.toString());
     }
 
-    //Fetch changed data from container
+    //Fetch changed data from container in a new container
+
+    /* 
+        first() - get the first X items of the container content
+    */
+    first(quantity) {
+        if(!quantity) return Container.from(this.#content[0]);
+        let result;
+        let index = 0;
+        switch(this.#type) {
+            case "Array":
+                result = [];
+                while(quantity > 0) {
+                    result.push(this.#content[index]);
+                    quantity--;
+                    index++;
+                }
+                return Container.from(result);
+            
+            case "Set":
+                result = [];
+                let contentArray = Array.from(this.#content);
+                while(quantity > 0) {
+                    result.push(contentArray[index]);
+                    quantity--;
+                    index++;
+                }
+                return Container.from(new Set(result));
+
+            case "Object":
+                
+        }
+    }
 
     //Edit data in the container
 
@@ -88,11 +120,13 @@ class Container {
         set() - change the content of the container, is limited to the initial type
     */
     set(newContent) {
+        if(this.#isLocked || this.#isSealed) return;
         if(newContent.constructor.name == type.constructor.name) {
             this.#content = content;
             this.#type = type;
             this.#resetAttributes;
         }
+        return this.content();
     }
 
     /*  
@@ -100,6 +134,7 @@ class Container {
         [key, value] to dictionary.
     */
     add(...args) {
+        if(this.#isLocked || this.#isSealed) this.content();
         switch(this.#type) {
             case "Array":
                 this.#content.push(args[0]);
@@ -128,9 +163,10 @@ class Container {
 
     /*  
         remove() - removes target value if content is iterable or target item by value if dictionary. 
-        Removes target text if is string. Supports Array, Map and Set.
+        Removes target text if is string. Supports String, Array, Map and Set.
     */
     remove(target) {
+        if(this.#isLocked || this.#isSealed) return;
         let result;
         switch(this.#type) {
             case "Array":
@@ -174,7 +210,12 @@ class Container {
         return this.content();
     }
 
+    /*  
+        removeIndex() - removes target index item if content is iterable. Removes target text
+        index if is a string. Supports Array, Set and String. 
+    */
     removeIndex(targetIndex) {
+        if(this.#isLocked || this.#isSealed) return;
         if(!typeof(targetIndex) == "number") return this.content();
         let index = 0;
         let result;
@@ -184,6 +225,30 @@ class Container {
                 this.#content.forEach(element => {
                     if(index != targetIndex) {
                         result.push(element);
+                    }
+                    index++;
+                });
+                this.#content = result;
+                this.#resetAttributes();
+                break;
+
+            case "Set":
+                result = [];
+                Array.from(this.#content).forEach(element => {
+                    if(index != targetIndex) {
+                        result.push(element);
+                    }
+                    index++;
+                });
+                this.#content = new Set(result);
+                this.#resetAttributes();
+                break;
+
+            case "String":
+                result = "";
+                this.#content.split("").forEach(char => {
+                    if(index != targetIndex) {
+                        result += char;
                     }
                     index++;
                 });
