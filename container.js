@@ -143,6 +143,11 @@ class Container {
     add(...args) {
         if(this.#isLocked || this.#isSealed) this.content();
         switch(this.#type) {
+            case "Object":
+                this.#content[args[0]] = args[1];
+                this.#resetAttributes();
+                break;
+
             case "Array":
                 this.#content.push(args[0]);
                 this.#resetAttributes();
