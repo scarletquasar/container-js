@@ -191,6 +191,8 @@ class Container {
                 this.#content = result;
                 this.#resetAttributes();
                 break;
+
+            //TODO: ADICIONAR CASE OBJECT
             
             case "Map":
                 result = new Map();
