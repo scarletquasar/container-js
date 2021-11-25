@@ -30,5 +30,12 @@ const arrayContainer = Container.from([1, 2, 3]);
 objectContainer.remove("a"); //Removes 'a' item from the object
 arrayContainer.remove(1); //Removes '1' element from the array
 ```
+```js
+const objectContainer = Container.from({a: 1, b: 2, c: 3});
+const arrayContainer = Container.from([1, 2, 3]);
+
+objectContainer.removeIndex(0); //Removes 'a' item from the object
+arrayContainer.removeIndex(0); //Removes '1' element from the array
+```
 
 </details>
