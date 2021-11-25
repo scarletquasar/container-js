@@ -1,0 +1,2 @@
+# ContainerJS
+An experiment with the objective of bringing rational objects using a solid abstraction to provide methods and attributes that follow a fixed pattern and increase the readability and coherence of the code.
