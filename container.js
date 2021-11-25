@@ -24,12 +24,26 @@ class Container {
     constructor(content) {
         this.#content = content;
         this.#type = content.constructor.name;
-
-        //Analisar pra unificar size e length<<<<
+        this.#resetAttributes();
     }
 
     #resetAttributes() {
-        //Criar método de setar atributos após alteração
+        switch(this.#type) {
+            case "Array":
+                this.#length = this.#content.length;
+                break;
+
+            case "Object":
+                this.#length = Object.keys(this.#content).length;
+
+            case "Map":
+                this.#length = this.#content.size;
+                break;
+
+            case "Set":
+                this.#length = this.#content.size;
+                break;
+        }
     }
 
     //Fetch data from container
@@ -113,7 +127,7 @@ class Container {
     }
 
     /*  
-        remove() - removes target value if content is iterable or dictionary. 
+        remove() - removes target value if content is iterable or target item by value if dictionary. 
         Removes target text if is string. Supports Array, Map and Set.
     */
     remove(target) {
@@ -121,7 +135,7 @@ class Container {
         switch(this.#type) {
             case "Array":
                 result = [];
-                this.#content.forEach((element) => {
+                this.#content.forEach(element => {
                     if(!compare(element, target)) {
                         result.push(element);
                     }
@@ -132,7 +146,7 @@ class Container {
             
             case "Map":
                 result = new Map();
-                this.#content.forEach((value, key) => {
+                this.#content.forEach(value, key => {
                     if(!compare(this.#content.get(key), target)) {
                         result.set(key, value);
                     }
@@ -143,7 +157,7 @@ class Container {
 
             case "Set":
                 result = [];
-                Array.from(this.#content).forEach((element) => {
+                Array.from(this.#content).forEach(element => {
                     if(!compare(element, target)) {
                         result.push(element);
                     }
@@ -160,11 +174,24 @@ class Container {
         return this.content();
     }
 
-    removeIndex(index) {
-        if(!typeof(index) == number) return this.content();
+    removeIndex(targetIndex) {
+        if(!typeof(targetIndex) == "number") return this.content();
+        let index = 0;
+        let result;
         switch(this.#type) {
-            
+            case "Array":
+                result = [];
+                this.#content.forEach(element => {
+                    if(index != targetIndex) {
+                        result.push(element);
+                    }
+                    index++;
+                });
+                this.#content = result;
+                this.#resetAttributes();
+                break;
         }
+        return this.content();
     }
 }
 
