@@ -64,34 +64,7 @@ class Container {
         [key, value] to dictionary. Supports Object, Array, Map, Set and String
     */
     add(...args) {
-        switch(this.#type) {
-            case "Object":
-                this.#content[args[0]] = args[1];
-                this.#resetAttributes();
-                break;
-
-            case "Array":
-                this.#content.push(args[0]);
-                this.#resetAttributes();
-                break;
-
-            case "Map":
-                this.#content.set(args[0], args[1]);
-                this.#resetAttributes();
-                break;
-
-            case "Set":
-                let tempValue = Array.from(this.#content);
-                tempValue.push(args[0]);
-                this.#content = new Set(tempValue);
-                this.#resetAttributes();
-                break;
-            
-            case "String":
-                this.#content += args[0];
-                this.#resetAttributes();
-                break;
-        }
+        methods.add(this.type(), this, ...args);
         return this.content();
     }
 
