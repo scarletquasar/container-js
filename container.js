@@ -57,6 +57,13 @@ class Container {
     }
 
     //Fetch data from container
+    content = () => this.#content;
+    length = () => this.#length;
+    toString = () => methods.toString(this.content());
+    toNumber = () => methods.toNumber(this.content(), this.type());
+    toBoolean = () => methods.toBoolean(this.content());
+    toSymbol = () => methods.toSymbol(this.content());
+    toBase64 = () => methods.toBase64(this.content());
 
     forEach() {
         //Pendent implementation
@@ -66,54 +73,8 @@ class Container {
         return this.#type;
     }
 
-    content = () => this.#content;
-    length = () => this.#length;
-    toString = () => methods.toString(this.content());
-    toNumber = () => methods.toNumber(this.content(), this.type());
-    toBoolean = () => methods.toBoolean(this.content());
-    toSymbol = () => methods.toSymbol(this.content());
-    toBase64 = () => methods.toBase64(this.content());
-
     //Fetch changed data from container in a new container
-
-    /* 
-        first() - get the first X items of the container content. Supports Array, Set and Object
-    */
-    first(quantity) {
-        if(!quantity) return Container.from(this.#content[0]);
-        let result;
-        let index = 0;
-        switch(this.#type) {
-            case "Array":
-                result = [];
-                while(quantity > 0) {
-                    result.push(this.#content[index]);
-                    quantity--;
-                    index++;
-                }
-                return Container.from(result);
-            
-            case "Set":
-                result = [];
-                let contentArray = Array.from(this.#content);
-                while(quantity > 0) {
-                    result.push(contentArray[index]);
-                    quantity--;
-                    index++;
-                }
-                return Container.from(new Set(result));
-
-            case "Object":
-                result = {};
-                let contentObjectArray = Object.entries(this.#content);
-                while(quantity > 0) {
-                    result[contentObjectArray[index][0]] = (contentObjectArray[index][1]);
-                    quantity--;
-                    index++;
-                }
-                return Container.from(result);
-        }
-    }
+    first = (quantity) => Container.from(methods.first(this.content(), this.type(), quantity));
 
     //Edit data in the container
 
@@ -121,7 +82,6 @@ class Container {
         set() - change the content of the container, is limited to the initial type
     */
     set(newContent) {
-        if(this.#isLocked || this.#isSealed) ;
         if(newContent.constructor.name == type.constructor.name) {
             this.#content = content;
             this.#type = type;
@@ -138,7 +98,6 @@ class Container {
         [key, value] to dictionary. Supports Object, Array, Map, Set and String
     */
     add(...args) {
-        if(this.#isLocked || this.#isSealed) this.content();
         switch(this.#type) {
             case "Object":
                 this.#content[args[0]] = args[1];
@@ -175,7 +134,6 @@ class Container {
         Removes target text if is string. Supports String, Array, Map and Set.
     */
     remove(target) {
-        if(this.#isLocked || this.#isSealed) return;
         let result;
         switch(this.#type) {
             case "Array":
@@ -235,7 +193,6 @@ class Container {
         index if is a string. Supports Array, Set and String. 
     */
     removeIndex(targetIndex) {
-        if(this.#isLocked || this.#isSealed) throw new Error(this.#errors.accessError);
         if(!typeof(targetIndex) == "number") return this.content();
         let index = 0;
         let result;

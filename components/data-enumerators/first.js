@@ -1,3 +1,6 @@
+/* 
+    first() - get the first X items of the container content. Supports Array, Set and Object
+*/
 export const first = (target, type, quantity) => {
     let result;
     switch(type) {
@@ -15,7 +18,7 @@ export const first = (target, type, quantity) => {
             if(quantity === 0) return result[objectEntries[0][0]] = objectEntries[0][1];
             const objectEntries = Object.entries(target);
             result = {};
-            let contentObjectArray = Object.entries(this.#content);
+            let contentObjectArray = Object.entries(target);
             while(quantity > 0) {
                 result[contentObjectArray[index][0]] = (contentObjectArray[index][1]);
                 quantity--;
@@ -35,5 +38,3 @@ export const first = (target, type, quantity) => {
             return result;
     }
 }
-
-//todo: Funcionalidade em progresso
