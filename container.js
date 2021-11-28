@@ -17,43 +17,13 @@ class Container {
 
     constructor(content) {
         this.#content = content;
-        this.#type = content.constructor.name;
         this.#resetAttributes();
     }
 
     #resetAttributes() {
-        switch(this.#type) {
-            case "Array":
-                this.#length = this.#content.length;
-                break;
-
-            case "Object":
-                this.#length = Object.keys(this.#content).length;
-
-            case "Map":
-                this.#length = this.#content.size;
-                break;
-
-            case "Set":
-                this.#length = this.#content.size;
-                break;
-
-            case "String":
-                this.#length = this.#content.length;
-                break;
-
-            case "Date":
-                this.#length = this.toString().length;
-                break;
-
-            case "RegExp":
-                this.#length = this.toString().length;
-                break;
-
-            case "Function":
-                this.#length = this.toString().length;
-                break;
-        }
+        const newProperties = methods.resetAttributes(this.content());
+        this.#type = newProperties.type;
+        this.#length = newProperties.length;
     }
 
     //Fetch data from container
@@ -75,6 +45,8 @@ class Container {
 
     //Fetch changed data from container in a new container
     first = (quantity) => Container.from(methods.first(this.content(), this.type(), quantity));
+    last = (quantity) => Container.from(methods.last(this.content(), this.type(), quantity, this.length()));
+    skip = (quantity) => Container.from(methods.skip(this.content(), this.type(), quantity));
 
     //Edit data in the container
 
