@@ -11,8 +11,8 @@ class Container {
         return new Container(content);
     }
 
-    #content = null; //Packed content
-    #type = null; //Target Type
+    #content = null;
+    #type = null;
     #length = 0;
 
     constructor(content) {
@@ -29,18 +29,14 @@ class Container {
     //Fetch data from container
     content = () => this.#content;
     length = () => this.#length;
+    type = () => this.#type;
     toString = () => methods.toString(this.content());
     toNumber = () => methods.toNumber(this.content(), this.type());
     toBoolean = () => methods.toBoolean(this.content());
     toSymbol = () => methods.toSymbol(this.content());
     toBase64 = () => methods.toBase64(this.content());
-
     forEach() {
         //Pendent implementation
-    }
-
-    type() {
-        return this.#type;
     }
 
     //Fetch changed data from container in a new container
@@ -53,16 +49,14 @@ class Container {
     /* 
         set() - change the content of the container, is limited to the initial type
     */
-    set(newContent) {
-        if(newContent.constructor.name == type.constructor.name) {
-            this.#content = content;
-            this.#type = type;
-            this.#resetAttributes;
+    set = (newContent) => {
+        if(methods.set(newContent, this.type())) {
+            this.#content = newContent;
+            this.#resetAttributes();
         }
         else {
             throw new TypeError(this.#errors.notAssignable);
         }
-        return this.content();
     }
 
     /*  

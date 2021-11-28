@@ -1,5 +1,6 @@
-/* Internal Controllers */
+/* Data changers */
 import { resetAttributes } from "./data-changers/resetAttributes.js";
+import { set } from "./data-changers/set.js";
 
 /* Data Masks */
 import { toString } from "./data-masks/toString.js";
@@ -15,6 +16,7 @@ import { skip } from "./data-enumerators/skip.js";
 
 export {
     resetAttributes,
+    set,
     toString, 
     toNumber,
     toBoolean,

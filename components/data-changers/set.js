@@ -1,0 +1,1 @@
+export const set = (newContent, type) => newContent.constructor.name == type.constructor.name;
