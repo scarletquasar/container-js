@@ -4,8 +4,7 @@ import * as methods from "./components/index.js";
 class Container {
     #errors = {
         notAssignable: "The value declared is not assignable to the container type.",
-        invalidArguments: "The inserted arguments are invalid for this operation.",
-        accessError: "The container can not be accessed. Check if the properties 'locked' and 'sealed' are tru."
+        invalidArguments: "The inserted arguments are invalid for this operation."
     }
 
     static from(content) {
