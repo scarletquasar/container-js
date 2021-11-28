@@ -1,0 +1,1 @@
+export const toString = (content) => content.toString();

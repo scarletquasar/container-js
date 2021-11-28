@@ -1,4 +1,5 @@
 import { compare } from "./lib/recursiveComparator.js"
+import * as methods from "./components/index.js"; 
 
 class Container {
     #errors = {
@@ -13,8 +14,6 @@ class Container {
 
     #content = null; //Packed content
     #type = null; //Target Type
-    #isLocked = false;
-    #isSealed = false;
     #length = 0;
 
     constructor(content) {
@@ -68,17 +67,10 @@ class Container {
         return this.#type;
     }
 
-    content() {
-        if(!this.#isLocked && !this.#isSealed) return this.#content;
-    }
+    content = () => this.#content;
+    length = () => this.#length;
 
-    length() {
-        if(!this.#isSealed) return this.#length;
-    }
-
-    toString() {
-        if(!this.#isLocked && !this.#isSealed) return this.#content.toString();
-    }
+    toString = () => methods.toString(this.content());
 
     toNumber() {
         if(!this.#isLocked && !this.#isSealed) return Number(this.#content.toString());
