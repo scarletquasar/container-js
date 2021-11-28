@@ -1,41 +1,41 @@
 /* 
-    first() - get the first X items of the container content. Supports Array, Set and Object
+    last() - get the last X items of the container content. Supports Array, Set and Object
 */
 //Todo: Add suport to Map and String constructors
-export const first = (target, type, quantity) => {
+export const last = (target, type, quantity, length) => {
     let result;
-    let index = 0;
+    let index = length - 1;
     switch(type) {
         case "Array":
-            if(quantity === 0) return target[0];
+            if(quantity === 0) return target[index];
             result = [];
             while(quantity > 0) {
                 result.push(target[index]);
                 quantity--;
-                index++;
+                index--;
             }
             return result;
         
         case "Object":
-            if(quantity === 0) return result[objectEntries[0][0]] = objectEntries[0][1];
+            if(quantity === 0) return result[objectEntries[index][0]] = objectEntries[index][1];
             const objectEntries = Object.entries(target);
             result = {};
             let contentObjectArray = Object.entries(target);
             while(quantity > 0) {
                 result[contentObjectArray[index][0]] = (contentObjectArray[index][1]);
                 quantity--;
-                index++;
+                index--;
             }
             return result;
         
         case "Set":
-            if(quantity === 0) return new Set(Array.from(target)[0]);
+            if(quantity === 0) return new Set(Array.from(target)[index]);
             result = [];
             let contentArray = Array.from(target);
             while(quantity > 0) {
                 result.push(contentArray[index]);
                 quantity--;
-                index++;
+                index--;
             }
             return result;
     }
