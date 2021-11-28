@@ -72,10 +72,7 @@ class Container {
     toString = () => methods.toString(this.content());
     toNumber = () => methods.toNumber(this.content(), this.type());
     toBoolean = () => methods.toBoolean(this.content());
-    
-    toSymbol() {
-        if(!this.#isLocked && !this.#isSealed) return Symbol(this.#content.toString());
-    }
+    toSymbol = () => methods.toSymbol(this.content());
 
     toBase64() {
         if(!this.#isLocked && !this.#isSealed) return btoa(this.#content.toString());
