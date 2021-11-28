@@ -1,7 +1,5 @@
-import { toString } from "./toString.js";
-
 export const toBoolean = (content) => {
-    const base = toString(content);
+    const base = content.toString();
 
     switch(base) {
         case "false":

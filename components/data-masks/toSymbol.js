@@ -1,3 +1,1 @@
-export const toSymbol = (content) => {
-    return Symbol(JSON.stringify(content));
-}
+export const toSymbol = (content) => Symbol(JSON.stringify(content));

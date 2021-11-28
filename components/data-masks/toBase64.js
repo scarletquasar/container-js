@@ -1,0 +1,1 @@
+export const toBase64 = (content) => btoa(content.toString());

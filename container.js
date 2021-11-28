@@ -73,10 +73,7 @@ class Container {
     toNumber = () => methods.toNumber(this.content(), this.type());
     toBoolean = () => methods.toBoolean(this.content());
     toSymbol = () => methods.toSymbol(this.content());
-
-    toBase64() {
-        if(!this.#isLocked && !this.#isSealed) return btoa(this.#content.toString());
-    }
+    toBase64 = () => methods.toBase64(this.content());
 
     //Fetch changed data from container in a new container
 
