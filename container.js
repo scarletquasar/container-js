@@ -69,12 +69,9 @@ class Container {
 
     content = () => this.#content;
     length = () => this.#length;
-
     toString = () => methods.toString(this.content());
-
-    toNumber() {
-        if(!this.#isLocked && !this.#isSealed) return Number(this.#content.toString());
-    }
+    toNumber = () => methods.toNumber(this.content(), this.type());
+    toBoolean = () => methods.toBoolean(this.content());
 
     toBoolean() {
         if(!this.#isLocked && !this.#isSealed) return Boolean(Number(this.#content.toString()));
