@@ -35,9 +35,7 @@ class Container {
     toBoolean = () => methods.toBoolean(this.content());
     toSymbol = () => methods.toSymbol(this.content());
     toBase64 = () => methods.toBase64(this.content());
-    forEach() {
-        //Pendent implementation
-    }
+    forEach = () => {}
 
     //Fetch changed data from container in a new container
     first = (quantity) => Container.from(methods.first(this.content(), this.type(), quantity));
@@ -45,10 +43,6 @@ class Container {
     skip = (quantity) => Container.from(methods.skip(this.content(), this.type(), quantity));
 
     //Edit data in the container
-
-    /* 
-        set() - change the content of the container, is limited to the initial type
-    */
     set = (newContent) => {
         if(methods.set(newContent, this.type())) {
             this.#content = newContent;
@@ -58,15 +52,7 @@ class Container {
             throw new TypeError(this.#errors.notAssignable);
         }
     }
-
-    /*  
-        add() - add a value based in the target type: [value] to iterable or string and
-        [key, value] to dictionary. Supports Object, Array, Map, Set and String
-    */
-    add(...args) {
-        methods.add(this.type(), this, ...args);
-        return this.content();
-    }
+    add = (...args) => methods.add(this.type(), this, ...args);
 
     /*  
         remove() - removes target value if content is iterable or target item by value if dictionary. 
