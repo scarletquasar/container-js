@@ -12,9 +12,16 @@ export const first = (target, type, quantity) => {
             return result;
         
         case "Object":
+            if(quantity === 0) return result[objectEntries[0][0]] = objectEntries[0][1];
             const objectEntries = Object.entries(target);
             result = {};
-            if(quantity === 0) return result[objectEntries[0][0]] = objectEntries[0][1];
+            let contentObjectArray = Object.entries(this.#content);
+            while(quantity > 0) {
+                result[contentObjectArray[index][0]] = (contentObjectArray[index][1]);
+                quantity--;
+                index++;
+            }
+            return result;
         
         case "Set":
             if(quantity === 0) return new Set(Array.from(target)[0]);
