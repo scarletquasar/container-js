@@ -1,5 +1,5 @@
 # ContainerJS - Data Management
-<a href="./QuickStart.md">Quick Start</a> - <a href="./DataManagement.md">Data Management</a>
+<a href="./QuickStart.md">Quick Start</a> - <a href="./DataManagement.md">Data Management</a> - <a href="./DataMasks.md">Data Masks</a>
 
 ## Summary
 
