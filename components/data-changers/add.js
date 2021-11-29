@@ -19,20 +19,17 @@ export const add = (type, reference, ...args) => {
             break;
 
         case "Map":
-            reference.#content.set(args[0], args[1]);
-            reference.#resetAttributes();
+            reference.set(args[0], args[1]);
             break;
 
         case "Set":
             let tempValue = Array.from(reference.#content);
             tempValue.push(args[0]);
-            reference.#content = new Set(tempValue);
-            reference.#resetAttributes();
+            reference.set(new Set(tempValue));
             break;
         
         case "String":
-            reference.#content += args[0];
-            reference.#resetAttributes();
+            reference.set(reference.content() + args[0]);
             break;
     }
     return reference.content();
