@@ -27,4 +27,12 @@ MyContainer.content(); //Will return an Array [1, 2, 3]
 </details>
 
 ## Method set(\[newContent\])
-The `[container].set([newContent])`
+The `[container].set([newContent])` will try to change the container's content to the new content. It will only work if the new content type is the same as the old content.
+
+Example:
+
+```js
+const MyContainer = Container.from(1);
+MyContainer.set(2); //Success, will return the new content
+MyContainer.set({}); //Will throw an TypeError
+```
