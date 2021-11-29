@@ -31,8 +31,26 @@ The `[container].set([newContent])` will try to change the container's content t
 
 Example:
 
+<details>
+
 ```js
 const MyContainer = Container.from(1);
 MyContainer.set(2); //Success, will return the new content
-MyContainer.set({}); //Will throw an TypeError
+MyContainer.set({}); //Will throw a TypeError
 ```
+
+</details>
+
+## Method type()
+`[container].type()` returns the container base constructor.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from(1);
+MyContainer.type(); //Will return "Number"
+```
+
+</details>
