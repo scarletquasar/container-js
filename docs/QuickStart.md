@@ -25,3 +25,6 @@ MyContainer.content(); //Will return an Array [1, 2, 3]
 ```
 
 </details>
+
+## Method set(\[newContent\])
+The `[container].set([newContent])`
