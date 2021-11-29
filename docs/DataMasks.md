@@ -11,3 +11,19 @@
 | <a href="#method-toBase64">Method **toBase64()**</a> |
 | <a href="#method-toSymbol">Method **toSymbol()**</a> |
 
+<a id="method-toString"></a>
+
+## Method toString()
+Returns a string raw conversion from the container content.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from([1, 2, 3]);
+
+MyContainer.toString(); //Returns "[1, 2, 3]"
+```
+
+</details>
