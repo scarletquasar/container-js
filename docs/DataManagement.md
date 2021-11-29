@@ -55,6 +55,8 @@ MyContainer.remove(1); //MyContainer content now will be [2, 3]
 
 </details>
 
+<a id="method-removeIndex"></a>
+
 ## Method removeIndex(\[Content\])
 Remove a element from container content by index.
 
