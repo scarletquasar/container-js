@@ -9,24 +9,22 @@ export const remove = (reference, target) => {
         switch(this.#type) {
             case "Array":
                 result = [];
-                reference.#content.forEach(element => {
+                reference.content().forEach(element => {
                     if(!compare(element, target)) {
                         result.push(element);
                     }
                 });
-                reference.#content = result;
-                reference.#resetAttributes();
+                reference.set(result);
                 break;
 
             case "Object":
                 result = {};
-                Object.entries(reference.#content).forEach(entry => {
+                Object.entries(reference.content()).forEach(entry => {
                     if(!compare(entry[1], target)) {
                         result[entry[0]] = entry[1];
                     }
                 });
-                reference.#content = result;
-                reference.#resetAttributes();
+                reference.set(result);
                 break;
             
             case "Map":
@@ -36,8 +34,7 @@ export const remove = (reference, target) => {
                         result.set(key, value);
                     }
                 });
-                reference.#content = result;
-                reference.#resetAttributes();
+                reference.set(result);
                 break;
 
             case "Set":
@@ -47,13 +44,11 @@ export const remove = (reference, target) => {
                         result.push(element);
                     }
                 });
-                reference.#content = new Set(result);
-                reference.#resetAttributes();
+                reference.set(new Set(result));
                 break;
 
             case "String":
-                reference.#content = reference.#content.replaceAll(target, "");
-                reference.#resetAttributes();
+                reference.set(reference.content().replaceAll(target, ""));
                 break;
         }
         return reference.content();
