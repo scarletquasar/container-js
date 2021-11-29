@@ -6,7 +6,7 @@ import { compare } from "../../lib/recursiveComparator.js";
 */
 export const remove = (reference, target) => {
     let result;
-        switch(this.#type) {
+        switch(this.type()) {
             case "Array":
                 result = [];
                 reference.content().forEach(element => {
