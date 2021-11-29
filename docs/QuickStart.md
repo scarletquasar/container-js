@@ -3,11 +3,13 @@
 
 | Content |
 | ------- |
-| Creating a container |
+| <a href="#simple-container">Creating a container</a> |
 | Method **content()** |
 | Method **set()** |
 | Method **type()** |
 | Method **length()** |
+
+<a id="simple-container"></a>
 
 ## Creating a simple container
 There are two ways to create a container, either directly using its constructor with `new Container(content)` or using the shorthand: `Container.from(content)`. After creation the container can **ONLY** receive the same data type (constructor) in which it was created, it was made that way to be more robust and less tolerant to problems such as mutability, thus avoiding several bugs throughout development.
