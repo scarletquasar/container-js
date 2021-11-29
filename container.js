@@ -52,66 +52,8 @@ class Container {
             throw new TypeError(this.#errors.notAssignable);
         }
     }
-    add = (...args) => methods.add(this.type(), this, ...args);
-
-    /*  
-        remove() - removes target value if content is iterable or target item by value if dictionary. 
-        Removes target text if is string. Supports String, Array, Map and Set.
-    */
-    remove(target) {
-        let result;
-        switch(this.#type) {
-            case "Array":
-                result = [];
-                this.#content.forEach(element => {
-                    if(!compare(element, target)) {
-                        result.push(element);
-                    }
-                });
-                this.#content = result;
-                this.#resetAttributes();
-                break;
-
-            case "Object":
-                result = {};
-                Object.entries(this.#content).forEach(entry => {
-                    if(!compare(entry[1], target)) {
-                        result[entry[0]] = entry[1];
-                    }
-                });
-                this.#content = result;
-                this.#resetAttributes();
-                break;
-            
-            case "Map":
-                result = new Map();
-                this.#content.forEach(value, key => {
-                    if(!compare(this.#content.get(key), target)) {
-                        result.set(key, value);
-                    }
-                });
-                this.#content = result;
-                this.#resetAttributes();
-                break;
-
-            case "Set":
-                result = [];
-                Array.from(this.#content).forEach(element => {
-                    if(!compare(element, target)) {
-                        result.push(element);
-                    }
-                });
-                this.#content = new Set(result);
-                this.#resetAttributes();
-                break;
-
-            case "String":
-                this.#content = this.#content.replaceAll(target, "");
-                this.#resetAttributes();
-                break;
-        }
-        return this.content();
-    }
+    add = (...args) => Container.from(methods.add(this.type(), this, ...args));
+    remove = (target) => Container.from(methods.remove(this, target)); 
 
     /*  
         removeIndex() - removes target index item if content is iterable. Removes target text

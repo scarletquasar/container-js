@@ -2,6 +2,7 @@
 import { resetAttributes } from "./data-changers/resetAttributes.js";
 import { set } from "./data-changers/set.js";
 import { add } from "./data-changers/add.js";
+import { remove } from "./data-changers/remove.js";
 
 /* Data Masks */
 import { toString } from "./data-masks/toString.js";
@@ -19,6 +20,7 @@ export {
     resetAttributes,
     set,
     add,
+    remove,
     toString, 
     toNumber,
     toBoolean,
