@@ -44,13 +44,47 @@ MyContainer.set({}); //Will throw a TypeError
 ## Method type()
 `[container].type()` returns the container base constructor.
 
-Example:
+Examples:
 
 <details>
 
 ```js
 const MyContainer = Container.from(1);
 MyContainer.type(); //Will return "Number"
+```
+
+```js
+const MyContainer = Container.from({});
+MyContainer.type(); //Will return "Object"
+```
+
+```js
+const MyContainer = Container.from(new Map());
+MyContainer.type(); //Will return "Map"
+```
+
+</details>
+
+## Method length()
+`[container].length()` returns the container content length.
+
+Examples:
+
+<details>
+
+```js
+const MyContainer = Container.from([1, 2, 3]);
+MyContainer.length(); //Will return 3
+```
+
+```js
+const MyContainer = Container.from({a: 1, b: 2});
+MyContainer.length(); //Will return 2
+```
+
+```js
+const MyContainer = Container.from(new Set([1, 2, 3, 4]));
+MyContainer.length(); //Will return 4
 ```
 
 </details>
