@@ -31,3 +31,33 @@ MyContainer.skip(3).first(5);
 
 ### Unifying data management
 A container is capable of dynamically detecting its type when being created, from that it allows the management of data in a unified way using generic methods. It currently supports popular JavaScript types such as Array, Object, Set and Map.
+
+Examples:
+
+<details>
+
+```js
+const MyContainer = Container.from([]);
+
+MyContainer.add(1); //Will add the item 1 to MyContainer content
+```
+
+```js
+const MyContainer = Container.from(new Set([]));
+
+MyContainer.add(1); //Will add the item 1 to MyContainer content
+```
+
+```js
+const MyContainer = Container.from({});
+
+MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
+```
+
+```js
+const MyContainer = Container.from(new Map());
+
+MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
+```
+
+</details>
