@@ -13,4 +13,18 @@ A container allows recursive operations, one of those possibilities is the abili
 Examples:
 
 <details>
+
+```js
+const MyContainer = Container.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+//Will return the first 5 items ([1, 2, 3, 4, 5])
+MyContainer.first(5);
+
+//Will return the last 3 items ([10, 9, 8])
+MyContainer.first(3);
+
+//Will return the first 5 items skipping 3 ([4, 5, 6, 7, 8])
+MyContainer.skip(3).first(5);
+```
+
 </details>
