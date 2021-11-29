@@ -29,8 +29,8 @@ export const remove = (reference, target) => {
             
             case "Map":
                 result = new Map();
-                reference.#content.forEach(value, key => {
-                    if(!compare(reference.#content.get(key), target)) {
+                reference.content().forEach(value, key => {
+                    if(!compare(reference.content().get(key), target)) {
                         result.set(key, value);
                     }
                 });
@@ -39,7 +39,7 @@ export const remove = (reference, target) => {
 
             case "Set":
                 result = [];
-                Array.from(reference.#content).forEach(element => {
+                Array.from(reference.content()).forEach(element => {
                     if(!compare(element, target)) {
                         result.push(element);
                     }
