@@ -28,3 +28,6 @@ MyContainer.skip(3).first(5);
 ```
 
 </details>
+
+### Unifying data management
+A container is capable of dynamically detecting its type when being created, from that it allows the management of data in a unified way using generic methods. It currently supports popular JavaScript types such as Array, Object, Set and Map.
