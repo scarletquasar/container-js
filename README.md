@@ -7,3 +7,10 @@ ContainerJS is a library that implements a new JavaScript constructor, **Contain
 A Container can also provide a lot of generic functions to handle, edit and manage the data as it was inspired by tools like Linq (from .NET) and py Linq (an implementation of Linq in Python).
 
 ## Interesting use cases
+### Getting data selectively
+A container allows recursive operations, one of those possibilities is the ability to get ordered data, such as "the first 5 items of an iterable object", "the last 3 items of an iterable object" or "the first 5 items of an iterable object skipping two objects".
+
+Examples:
+
+<details>
+</details>
