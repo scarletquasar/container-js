@@ -56,5 +56,3 @@ class Container {
     remove = (target) => Container.from(methods.remove(this, target)); 
     removeIndex = (targetIndex) => Container.from(methods.removeIndex(this, targetIndex));
 }
-
-window["Container"] = Container;
