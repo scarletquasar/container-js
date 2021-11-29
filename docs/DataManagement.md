@@ -9,6 +9,8 @@
 | <a href="#method-remove">Method **remove()**</a> |
 | <a href="#method-removeIndex">Method **removeIndex()**</a> |
 
+<a id="method-add"></a>
+
 ## Method add(\[Content\])
 Adds a new element to the container's contents.
 
@@ -28,4 +30,14 @@ const MyContainer = Container.from({});
 MyContainer.add("a", 1); //MyContainer content now will be {a: 1}
 ```
 
+```js
+const MyContainer = Container.from("ab");
+
+MyContainer.add("c"); //MyContainer content now will be "abc"
+```
+
 </details>
+
+<a id="method-remove"></a>
+
+## Method remove(\[Content\])
