@@ -66,3 +66,6 @@ MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
 </details>
 
 </details>
+
+## Getting Started
+You can get started and learn about all the ContainerJS features here.
