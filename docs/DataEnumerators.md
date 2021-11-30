@@ -45,6 +45,8 @@ MyContainer.last(5);
 
 </details>
 
+<a id="method-skip"></a>
+
 ## Method skip(\[Quantity\])
 Ignore the first X items in the current enumeration and returns a new container of it.
 
