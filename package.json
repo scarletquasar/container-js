@@ -1,7 +1,7 @@
 {
   "name": "container-dot-js",
-  "version": "0.1.0",
-  "description": "Solid abstraction to provide convenient  methods and attributes that follow a fixed pattern and increase the readability and coherence of the code",
+  "version": "1.0.0",
+  "description": "Library for creating dynamic objects with convenient generic attributes and methods",
   "main": "container.js",
   "directories": {
     "doc": "docs"
