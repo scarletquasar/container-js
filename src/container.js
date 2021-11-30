@@ -35,7 +35,6 @@ export default class Container {
     toBoolean = () => methods.toBoolean(this.content());
     toSymbol = () => methods.toSymbol(this.content());
     toBase64 = () => methods.toBase64(this.content());
-    forEach = () => {}
 
     //Fetch changed data from container in a new container
     first = (quantity) => Container.from(methods.first(this.content(), this.type(), quantity));
