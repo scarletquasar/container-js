@@ -7,9 +7,7 @@ export default class Container {
         invalidArguments: "The inserted arguments are invalid for this operation."
     }
 
-    static from(content) {
-        return new Container(content);
-    }
+    static from = (content) => new Container(content)
 
     #content = null;
     #type = null;
