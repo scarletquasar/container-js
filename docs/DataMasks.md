@@ -42,3 +42,54 @@ MyContainer.toNumber(); //Returns 1234
 ```
 
 </details>
+
+<a id="method-toBoolean"></a>
+
+## Method toBoolean()
+Returns the content value as a boolean.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from("true");
+
+MyContainer.toBoolean(); //Returns true 
+```
+
+</details>
+
+<a id="method-toBase64"></a>
+
+## Method toBase64()
+Returns the content value converted to a Base64 code.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from("123456");
+
+MyContainer.toBase64(); //Returns [Base 64 code] 
+```
+
+</details>
+
+<a id="method-toSymbol"></a>
+
+## Method toSymbol()
+Returns a new Symbol based in the container content.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from("value");
+
+MyContainer.toSymbol(); //Returns Symbol(value) (unique) 
+```
+
+</details>
