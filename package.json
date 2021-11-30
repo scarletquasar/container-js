@@ -1,0 +1,30 @@
+{
+  "name": "container-dot-js",
+  "version": "0.1.0",
+  "description": "Solid abstraction to provide convenient  methods and attributes that follow a fixed pattern and increase the readability and coherence of the code",
+  "main": "container.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EternalQuasar0206/container-js.git"
+  },
+  "keywords": [
+    "library",
+    "data",
+    "container",
+    "methods",
+    "abstractions",
+    "immutability"
+  ],
+  "author": "EternalQuasar0206",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EternalQuasar0206/container-js/issues"
+  },
+  "homepage": "https://github.com/EternalQuasar0206/container-js#readme"
+}

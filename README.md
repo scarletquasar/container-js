@@ -67,5 +67,30 @@ MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
 
 </details>
 
+## Installation
+Via NPM:
+
+```
+npm install container-dot-js
+```
+
+Manually:
+
+```
+git clone https://github.com/EternalQuasar0206/container-js
+```
+
 ## Getting Started
+To start using ContainerJS in a project just use the snippet:
+
+```js
+import { Container } from "container-dot-js"
+```
+
+or
+
+```js
+import { Container } from "/path/to/repo/container.js"
+```
+
 You can get started and learn about all the ContainerJS features <a href="./docs/QuickStart.md">here</a>.
