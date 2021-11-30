@@ -27,3 +27,18 @@ MyContainer.toString(); //Returns "[1, 2, 3]"
 ```
 
 </details>
+
+## Method toNumber()
+Returns a number selective conversion from the container content.
+
+Example:
+
+<details>
+
+```js
+const MyContainer = Container.from("a12b34");
+
+MyContainer.toNumber(); //Returns 1234 
+```
+
+</details>
