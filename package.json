@@ -1,9 +1,9 @@
 {
   "name": "container-dot-js",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library for creating dynamic objects with convenient generic attributes and methods",
-  "main": "container.js",
+  "main": "src/container.js",
   "directories": {
     "doc": "docs"
   },
