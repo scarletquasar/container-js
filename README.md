@@ -6,6 +6,7 @@ An experiment with the objective of bringing rational objects using a solid abst
 | Version | Branch |
 | ------- | ------ |
 | development | main |
+| 1.0.1 | v1.0.1 |
 | 1.0.0 | v1.0.0 |
 
 ## How it works?
@@ -75,7 +76,7 @@ MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
 </details>
 
 ## Installation
-Via NPM (Last stable version - v1.0.0):
+Via NPM (Last stable version - v1.0.1):
 
 ```
 npm install container-dot-js
