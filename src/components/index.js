@@ -17,6 +17,9 @@ import { first } from "./data-enumerators/first.js";
 import { last } from "./data-enumerators/last.js";
 import { skip } from "./data-enumerators/skip.js";
 
+/* Data Operators */
+import { forEach } from "./data-operators/forEach.js";
+
 export {
     resetAttributes,
     set,
@@ -30,5 +33,6 @@ export {
     toBase64,
     first,
     last,
-    skip
+    skip,
+    forEach
 };

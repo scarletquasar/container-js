@@ -39,6 +39,9 @@ export default class Container {
     last = (quantity) => Container.from(methods.last(this.content(), this.type(), quantity, this.length()));
     skip = (quantity) => Container.from(methods.skip(this.content(), this.type(), quantity));
 
+    //Container operations
+    forEach = (...args) => methods.forEach(...args, this.content(), this.type());
+
     //Edit data in the container
     set = (newContent) => {
         if(methods.set(newContent, this.type())) {
@@ -53,3 +56,5 @@ export default class Container {
     remove = (target) => Container.from(methods.remove(this, target)); 
     removeIndex = (targetIndex) => Container.from(methods.removeIndex(this, targetIndex));
 }
+
+window["Container"] = Container;

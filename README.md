@@ -75,7 +75,7 @@ MyContainer.add("a", 1); //Will add the item {a: 1} to MyContainer content
 </details>
 
 ## Installation
-Via NPM:
+Via NPM (Last stable version - v1.0.0):
 
 ```
 npm install container-dot-js
