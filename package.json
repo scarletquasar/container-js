@@ -8,7 +8,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d build"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,13 @@
   "bugs": {
     "url": "https://github.com/EternalQuasar0206/container-js/issues"
   },
-  "homepage": "https://github.com/EternalQuasar0206/container-js#readme"
+  "homepage": "https://github.com/EternalQuasar0206/container-js#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
