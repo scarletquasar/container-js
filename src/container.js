@@ -1,7 +1,7 @@
 import { compare } from "./lib/recursiveComparator.js"
 import * as methods from "./components/index.js"; 
 
-export default class Container {
+class Container {
     #errors = {
         notAssignable: "The value declared is not assignable to the container type.",
         invalidArguments: "The inserted arguments are invalid for this operation."
@@ -57,4 +57,4 @@ export default class Container {
     removeIndex = (targetIndex) => Container.from(methods.removeIndex(this, targetIndex));
 }
 
-window["Container"] = Container;
+export {Container}; 
