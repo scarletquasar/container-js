@@ -1,1 +1,3 @@
-export const clear = {};
+export const clear = (reference) => {
+
+};
