@@ -1,7 +1,3 @@
-/*  
-    removeIndex() - removes target index item if content is iterable. Removes target text
-    index if is a string. Supports Array, Set and String. 
-*/
 export const removeIndex = (reference, targetIndex) => {
     if(!typeof(targetIndex) == "number") return reference.content();
         let index = 0;

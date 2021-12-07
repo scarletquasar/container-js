@@ -1,9 +1,5 @@
 import { compare } from "../../lib/recursiveComparator.js";
 
-/*  
-    remove() - removes target value if content is iterable or target item by value if dictionary. 
-    Removes target text if is string. Supports String, Array, Map and Set.
-*/
 export const remove = (reference, target) => {
     let result;
         switch(reference.type()) {

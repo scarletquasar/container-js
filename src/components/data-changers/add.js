@@ -1,7 +1,3 @@
-/*  
-    add() - add a value based in the target type: [value] to iterable or string and
-    [key, value] to dictionary. Supports Object, Array, Map, Set and String
-*/
 export const add = (type, reference, ...args) => {
     let content = reference.content();
     let dataToAdd;
