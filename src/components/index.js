@@ -19,6 +19,7 @@ import { skip } from "./data-enumerators/skip.js";
 
 /* Data Operators */
 import { forEach } from "./data-operators/forEach.js";
+import { map } from "./data-operators/map.js";
 
 export {
     resetAttributes,
@@ -34,5 +35,6 @@ export {
     first,
     last,
     skip,
-    forEach
+    forEach,
+    map
 };
