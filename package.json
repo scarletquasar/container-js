@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "babel src -d build",
-    "test": "node tests/test.js"
+    "test": "deno run ./tests/test.js"
   },
   "repository": {
     "type": "git",

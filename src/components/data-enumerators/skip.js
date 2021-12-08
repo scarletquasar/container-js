@@ -1,3 +1,4 @@
+//Todo: Add suport to Map and String constructors
 export const skip = (content, type, quantity) => {
     let result;
     switch(type) {

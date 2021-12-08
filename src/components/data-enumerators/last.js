@@ -1,6 +1,3 @@
-/* 
-    last() - get the last X items of the container content. Supports Array, Set and Object
-*/
 //Todo: Add suport to Map and String constructors
 export const last = (target, type, quantity, length) => {
     let result;

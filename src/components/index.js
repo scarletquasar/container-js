@@ -21,6 +21,7 @@ import { skip } from "./data-enumerators/skip.js";
 import { forEach } from "./data-operators/forEach.js";
 import { map } from "./data-operators/map.js";
 import { strictForEach, strictMap } from "./data-operators/strictOperations.js";
+import { where } from "./data-enumerators/where.js";
 
 export {
     resetAttributes,
@@ -39,5 +40,6 @@ export {
     skip,
     set,
     map,
-    add
+    add,
+    where
 };

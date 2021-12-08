@@ -1,6 +1,3 @@
-/* 
-    first() - get the first X items of the container content. Supports Array, Set and Object
-*/
 //Todo: Add suport to Map and String constructors
 export const first = (target, type, quantity) => {
     let result;

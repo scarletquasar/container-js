@@ -8,3 +8,4 @@
 - Implemented `saveState()` function
 - Implemented `getState()` function
 - Implemented `restoreState()` function
+- Implemented `where()` function

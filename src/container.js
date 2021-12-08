@@ -38,6 +38,7 @@ class Container {
     first = (quantity) => Container.from(methods.first(this.content(), this.type(), quantity));
     last = (quantity) => Container.from(methods.last(this.content(), this.type(), quantity, this.length()));
     skip = (quantity) => Container.from(methods.skip(this.content(), this.type(), quantity));
+    where = (condition) => Container.from(methods.where(condition, this.content(), this.type()));
 
     //Container operations
     forEach = (...args) => methods.forEach(...args, this.content(), this.type());
