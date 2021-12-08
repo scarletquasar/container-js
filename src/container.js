@@ -1,4 +1,3 @@
-import { compare } from "./lib/recursiveComparator.js"
 import * as methods from "./components/index.js"; 
 
 class Container {
@@ -42,7 +41,9 @@ class Container {
     //Container operations
     forEach = (...args) => methods.forEach(...args, this.content(), this.type());
     map = (...args) => methods.map(...args, this.content(), this.type());
-    
+    strictForEach = (callback, condition) => methods.strictForEach(callback, condition, this.content(), this.type());
+    strictMap = (callback, condition) => methods.strictMap(callback, condition, this.content(), this.type());
+
     //Edit data in the container
     set = (newContent) => {
         if(methods.set(newContent, this.type())) {

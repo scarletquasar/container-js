@@ -20,21 +20,24 @@ import { skip } from "./data-enumerators/skip.js";
 /* Data Operators */
 import { forEach } from "./data-operators/forEach.js";
 import { map } from "./data-operators/map.js";
+import { strictForEach, strictMap } from "./data-operators/strictOperations.js";
 
 export {
     resetAttributes,
-    set,
-    add,
-    remove,
+    strictForEach,
     removeIndex,
-    toString, 
-    toNumber,
     toBoolean,
-    toSymbol,
+    strictMap,
     toBase64,
+    toSymbol,
+    toNumber,
+    toString,
+    forEach,
+    remove,
     first,
     last,
     skip,
-    forEach,
-    map
+    set,
+    map,
+    add
 };
