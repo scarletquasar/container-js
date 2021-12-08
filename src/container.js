@@ -11,6 +11,7 @@ class Container {
     #content = null;
     #type = null;
     #length = 0;
+    #states = [];
 
     constructor(content) {
         this.#content = content;
@@ -54,6 +55,9 @@ class Container {
             throw new TypeError(this.#errors.notAssignable);
         }
     }
+    saveState = () => this.#states.push(this.content());
+    getState = (index) => this.#states[index];
+    restoreState = (index) => this.set(this.getState(index));
     add = (...args) => Container.from(methods.add(this.type(), this, ...args));
     remove = (target) => Container.from(methods.remove(this, target)); 
     removeIndex = (targetIndex) => Container.from(methods.removeIndex(this, targetIndex));
