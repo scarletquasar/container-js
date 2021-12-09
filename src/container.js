@@ -39,6 +39,8 @@ class Container {
         this.#length = newProperties.length;
     }
 
+    addEventListener = (event, callback) => this.#events[event].push(callback);
+
     //Fetch data from container
     content = () => {
         this.#triggerEvent("get"); 
