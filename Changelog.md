@@ -9,3 +9,4 @@
 - Implemented `getState()` function
 - Implemented `restoreState()` function
 - Implemented `where()` function
+- Implemented `add/removeEventListener()` function
