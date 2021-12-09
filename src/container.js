@@ -1,3 +1,4 @@
+import { compare } from "./lib/recursiveComparator.js";
 import * as methods from "./components/index.js"; 
 
 class Container {
@@ -40,6 +41,7 @@ class Container {
     }
 
     addEventListener = (event, callback) => this.#events[event].push(callback);
+    removeEventListener = (event, callback) => this.#events[event] = this.#events[event].filter(x => !compare(x, callback));
 
     //Fetch data from container
     content = () => {
