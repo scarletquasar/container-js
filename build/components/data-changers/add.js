@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.add = void 0;
 
-/*  
-    add() - add a value based in the target type: [value] to iterable or string and
-    [key, value] to dictionary. Supports Object, Array, Map, Set and String
-*/
 var add = function add(type, reference) {
   var content = reference.content();
   var dataToAdd;

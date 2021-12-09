@@ -7,10 +7,6 @@ exports.remove = void 0;
 
 var _recursiveComparator = require("../../lib/recursiveComparator.js");
 
-/*  
-    remove() - removes target value if content is iterable or target item by value if dictionary. 
-    Removes target text if is string. Supports String, Array, Map and Set.
-*/
 var remove = (reference, target) => {
   var result;
 

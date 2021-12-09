@@ -5,9 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.first = void 0;
 
-/* 
-    first() - get the first X items of the container content. Supports Array, Set and Object
-*/
 //Todo: Add suport to Map and String constructors
 var first = (target, type, quantity) => {
   var result;

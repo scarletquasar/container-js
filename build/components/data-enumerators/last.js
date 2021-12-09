@@ -5,9 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.last = void 0;
 
-/* 
-    last() - get the last X items of the container content. Supports Array, Set and Object
-*/
 //Todo: Add suport to Map and String constructors
 var last = (target, type, quantity, length) => {
   var result;

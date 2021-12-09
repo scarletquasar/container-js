@@ -41,6 +41,14 @@ var _type = /*#__PURE__*/new WeakMap();
 
 var _length = /*#__PURE__*/new WeakMap();
 
+var _states = /*#__PURE__*/new WeakMap();
+
+var _events = /*#__PURE__*/new WeakMap();
+
+var _eventBase = /*#__PURE__*/new WeakMap();
+
+var _triggerEvent = /*#__PURE__*/new WeakSet();
+
 var _resetAttributes = /*#__PURE__*/new WeakSet();
 
 class Container {
@@ -48,6 +56,8 @@ class Container {
     var _this = this;
 
     _classPrivateMethodInitSpec(this, _resetAttributes);
+
+    _classPrivateMethodInitSpec(this, _triggerEvent);
 
     _classPrivateFieldInitSpec(this, _errors, {
       writable: true,
@@ -72,38 +82,141 @@ class Container {
       value: 0
     });
 
-    _defineProperty(this, "content", () => _classPrivateFieldGet(this, _content));
+    _classPrivateFieldInitSpec(this, _states, {
+      writable: true,
+      value: []
+    });
 
-    _defineProperty(this, "length", () => _classPrivateFieldGet(this, _length));
+    _classPrivateFieldInitSpec(this, _events, {
+      writable: true,
+      value: {
+        check: [],
+        set: [],
+        get: []
+      }
+    });
 
-    _defineProperty(this, "type", () => _classPrivateFieldGet(this, _type));
+    _classPrivateFieldInitSpec(this, _eventBase, {
+      writable: true,
+      value: {
+        target: this,
+        currentTarget: this,
+        isTrusted: false
+      }
+    });
 
-    _defineProperty(this, "toString", () => methods.toString(this.content()));
+    _defineProperty(this, "addEventListener", (event, callback) => _classPrivateFieldGet(this, _events)[event].push(callback));
 
-    _defineProperty(this, "toNumber", () => methods.toNumber(this.content(), this.type()));
+    _defineProperty(this, "removeEventListener", (event, callback) => _classPrivateFieldGet(this, _events)[event] = _classPrivateFieldGet(this, _events)[event].filter(x => !(0, _recursiveComparator.compare)(x, callback)));
 
-    _defineProperty(this, "toBoolean", () => methods.toBoolean(this.content()));
+    _defineProperty(this, "content", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
 
-    _defineProperty(this, "toSymbol", () => methods.toSymbol(this.content()));
+      return _classPrivateFieldGet(this, _content);
+    });
 
-    _defineProperty(this, "toBase64", () => methods.toBase64(this.content()));
+    _defineProperty(this, "length", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "check");
 
-    _defineProperty(this, "first", quantity => Container.from(methods.first(this.content(), this.type(), quantity)));
+      return _classPrivateFieldGet(this, _length);
+    });
 
-    _defineProperty(this, "last", quantity => Container.from(methods.last(this.content(), this.type(), quantity, this.length())));
+    _defineProperty(this, "type", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "check");
 
-    _defineProperty(this, "skip", quantity => Container.from(methods.skip(this.content(), this.type(), quantity)));
+      return _classPrivateFieldGet(this, _type);
+    });
+
+    _defineProperty(this, "toString", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return methods.toString(this.content());
+    });
+
+    _defineProperty(this, "toNumber", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return methods.toNumber(this.content(), this.type());
+    });
+
+    _defineProperty(this, "toBoolean", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return methods.toBoolean(this.content());
+    });
+
+    _defineProperty(this, "toSymbol", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return methods.toSymbol(this.content());
+    });
+
+    _defineProperty(this, "toBase64", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return methods.toBase64(this.content());
+    });
+
+    _defineProperty(this, "first", quantity => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return Container.from(methods.first(this.content(), this.type(), quantity));
+    });
+
+    _defineProperty(this, "last", quantity => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return Container.from(methods.last(this.content(), this.type(), quantity, this.length()));
+    });
+
+    _defineProperty(this, "skip", quantity => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return Container.from(methods.skip(this.content(), this.type(), quantity));
+    });
+
+    _defineProperty(this, "where", condition => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      return Container.from(methods.where(condition, this.content(), this.type()));
+    });
 
     _defineProperty(this, "forEach", function () {
+      _classPrivateMethodGet(_this, _triggerEvent, _triggerEvent2).call(_this, "get");
+
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      return methods.forEach(...args, _this.content(), _this.type());
+      methods.forEach(...args, _this.content(), _this.type());
+    });
+
+    _defineProperty(this, "map", function () {
+      _classPrivateMethodGet(_this, _triggerEvent, _triggerEvent2).call(_this, "get");
+
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      methods.map(...args, _this.content(), _this.type());
+    });
+
+    _defineProperty(this, "strictForEach", (callback, condition) => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      methods.strictForEach(callback, condition, this.content(), this.type());
+    });
+
+    _defineProperty(this, "strictMap", (callback, condition) => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      methods.strictMap(callback, condition, this.content(), this.type());
     });
 
     _defineProperty(this, "set", newContent => {
       if (methods.set(newContent, this.type())) {
+        _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "set");
+
         _classPrivateFieldSet(this, _content, newContent);
 
         _classPrivateMethodGet(this, _resetAttributes, _resetAttributes2).call(this);
@@ -112,17 +225,45 @@ class Container {
       }
     });
 
+    _defineProperty(this, "saveState", () => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "set");
+
+      _classPrivateFieldGet(this, _states).push(this.content());
+    });
+
+    _defineProperty(this, "getState", index => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "get");
+
+      _classPrivateFieldGet(this, _states)[index];
+    });
+
+    _defineProperty(this, "restoreState", index => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "set");
+
+      this.set(this.getState(index));
+    });
+
     _defineProperty(this, "add", function () {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2];
+      _classPrivateMethodGet(_this, _triggerEvent, _triggerEvent2).call(_this, "set");
+
+      for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        args[_key3] = arguments[_key3];
       }
 
       return Container.from(methods.add(_this.type(), _this, ...args));
     });
 
-    _defineProperty(this, "remove", target => Container.from(methods.remove(this, target)));
+    _defineProperty(this, "remove", target => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "set");
 
-    _defineProperty(this, "removeIndex", targetIndex => Container.from(methods.removeIndex(this, targetIndex)));
+      return Container.from(methods.remove(this, target));
+    });
+
+    _defineProperty(this, "removeIndex", targetIndex => {
+      _classPrivateMethodGet(this, _triggerEvent, _triggerEvent2).call(this, "set");
+
+      return Container.from(methods.removeIndex(this, targetIndex));
+    });
 
     _classPrivateFieldSet(this, _content, content);
 
@@ -132,6 +273,10 @@ class Container {
 }
 
 exports.Container = Container;
+
+function _triggerEvent2(eventName) {
+  _classPrivateFieldGet(this, _events)[eventName].forEach(event => event(eventBase));
+}
 
 function _resetAttributes2() {
   var newProperties = methods.resetAttributes(this.content());

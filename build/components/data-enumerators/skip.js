@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.skip = void 0;
 
+//Todo: Add suport to Map and String constructors
 var skip = (content, type, quantity) => {
   var result;
 

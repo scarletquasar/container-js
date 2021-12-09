@@ -27,6 +27,12 @@ Object.defineProperty(exports, "last", {
     return _last.last;
   }
 });
+Object.defineProperty(exports, "map", {
+  enumerable: true,
+  get: function get() {
+    return _map.map;
+  }
+});
 Object.defineProperty(exports, "remove", {
   enumerable: true,
   get: function get() {
@@ -55,6 +61,18 @@ Object.defineProperty(exports, "skip", {
   enumerable: true,
   get: function get() {
     return _skip.skip;
+  }
+});
+Object.defineProperty(exports, "strictForEach", {
+  enumerable: true,
+  get: function get() {
+    return _strictOperations.strictForEach;
+  }
+});
+Object.defineProperty(exports, "strictMap", {
+  enumerable: true,
+  get: function get() {
+    return _strictOperations.strictMap;
   }
 });
 Object.defineProperty(exports, "toBase64", {
@@ -87,6 +105,12 @@ Object.defineProperty(exports, "toSymbol", {
     return _toSymbol.toSymbol;
   }
 });
+Object.defineProperty(exports, "where", {
+  enumerable: true,
+  get: function get() {
+    return _where.where;
+  }
+});
 
 var _resetAttributes = require("./data-changers/resetAttributes.js");
 
@@ -115,3 +139,9 @@ var _last = require("./data-enumerators/last.js");
 var _skip = require("./data-enumerators/skip.js");
 
 var _forEach = require("./data-operators/forEach.js");
+
+var _map = require("./data-operators/map.js");
+
+var _strictOperations = require("./data-operators/strictOperations.js");
+
+var _where = require("./data-enumerators/where.js");

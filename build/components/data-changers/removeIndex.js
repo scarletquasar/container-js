@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.removeIndex = void 0;
 
-/*  
-    removeIndex() - removes target index item if content is iterable. Removes target text
-    index if is a string. Supports Array, Set and String. 
-*/
 var removeIndex = (reference, targetIndex) => {
   if (!typeof targetIndex == "number") return reference.content();
   var index = 0;
