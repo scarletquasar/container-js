@@ -13,7 +13,6 @@ class Container {
     #length = 0;
     #states = [];
     #events = {
-        change: [],
         check: [],
         set: [],
         get: []
@@ -125,11 +124,26 @@ class Container {
         this.#triggerEvent("set");
         this.#states.push(this.content());
     };
-    getState = (index) => this.#states[index];
-    restoreState = (index) => this.set(this.getState(index));
-    add = (...args) => Container.from(methods.add(this.type(), this, ...args));
-    remove = (target) => Container.from(methods.remove(this, target)); 
-    removeIndex = (targetIndex) => Container.from(methods.removeIndex(this, targetIndex));
+    getState = (index) => {
+        this.#triggerEvent("get");
+        this.#states[index];
+    };
+    restoreState = (index) => {
+        this.#triggerEvent("set");
+        this.set(this.getState(index));
+    };
+    add = (...args) => {
+        this.#triggerEvent("set");
+        return Container.from(methods.add(this.type(), this, ...args));
+    };
+    remove = (target) => {
+        this.#triggerEvent("set");
+        return Container.from(methods.remove(this, target));
+    }; 
+    removeIndex = (targetIndex) => {
+        this.#triggerEvent("set");
+        return Container.from(methods.removeIndex(this, targetIndex));
+    };
 }
 
 export {Container}; 
