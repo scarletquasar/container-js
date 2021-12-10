@@ -19,13 +19,13 @@ export const add = (type, reference, ...args) => {
             break;
 
         case "Set":
-            let tempValue = Array.from(reference.content());
+            let tempValue = Array.from(content);
             tempValue.push(args[0]);
             reference.set(new Set(tempValue));
             break;
         
         case "String":
-            reference.set(reference.content() + args[0]);
+            reference.set(content + args[0]);
             break;
     }
     return reference.content();
